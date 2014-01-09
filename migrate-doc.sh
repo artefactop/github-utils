@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Call this each git push. Enabling this git hook is as easy as making the file executable.
+# cp migrate-doc.sh .git/hooks/post-commit; chmod a+x .git/hooks/post-commit
+
+
 echo "Migrates an existing doc folder into a gh-pages branch, and links back as submodule"
     
 current_branch=`git branch | grep "^*" | sed -e "s/* //"`
