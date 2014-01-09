@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Call this each git push. Enabling this git hook is as easy as making the file executable.
+# cp migrate-doc.sh .git/hooks/post-commit; chmod a+x .git/hooks/post-commit
+
+current_branch=`git branch | grep "^*" | sed -e "s/* //"`
+message=`git log -1 --pretty=%B | head -n -1`
+git checkout gh-pages
+git add doc
+git commit -m "$message"
+git push
+git checkout $current_branch
